@@ -109,6 +109,15 @@ export interface QuizData {
   email: string;
   name: string;
   selectedPlan: string;
+  // Novas propriedades
+  activityLevel: string;
+  dietaryPreferences: string[];
+  goal: string;
+  healthConditions: string[];
+  physicalCondition: string;
+  problemAreas: string[];
+  sleepHours: string;
+  stressLevel: string;
 }
 
 const TOTAL_STEPS = 40;
