@@ -118,6 +118,7 @@ export interface QuizData {
   problemAreas: string[];
   sleepHours: string;
   stressLevel: string;
+  waterIntake: string;
 }
 
 const TOTAL_STEPS = 40;
