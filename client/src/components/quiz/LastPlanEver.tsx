@@ -16,9 +16,9 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
   const currentWeight = data.currentWeight || 70;
   const targetWeight = data.targetWeight || 60;
   
-  // Calculate 4 weeks progression
+  // Calculate 3 weeks progression
   const weekDates = [];
-  for (let i = 0; i <= 4; i++) {
+  for (let i = 0; i < 3; i++) {
     const date = new Date();
     date.setDate(date.getDate() + (i * 7));
     weekDates.push(date.toLocaleDateString('en-US', { 
@@ -27,7 +27,12 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
     }));
   }
   
-  const finalDate = weekDates[4];
+  const finalDate = new Date();
+  finalDate.setDate(finalDate.getDate() + (3 * 7));
+  const formattedFinalDate = finalDate.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'short'
+  });
 
   useEffect(() => {
     // Start animation after component mounts
@@ -38,7 +43,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
     // Show button after animation
     const timer2 = setTimeout(() => {
       setShowButton(true);
-    }, 3000);
+    }, 1800);
 
     return () => {
       clearTimeout(timer1);
@@ -57,7 +62,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
             We predict you will reach
           </p>
           <p className="text-2xl font-bold text-[#ea749b]">
-            {targetWeight} kg by {finalDate}
+            {targetWeight} kg by {formattedFinalDate}
           </p>
         </div>
 
@@ -92,16 +97,16 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 <line x1="0" y1="150" x2="320" y2="150" />
               </g>
               
-              {/* Week markers */}
+              {/* Week markers (adjusted for 3 weeks) */}
               <g stroke="#D1D5DB" strokeWidth="1" opacity="0.3">
-                <line x1="80" y1="0" x2="80" y2="200" />
-                <line x1="160" y1="0" x2="160" y2="200" />
-                <line x1="240" y1="0" x2="240" y2="200" />
+                <line x1="80" y1="0" x2="80" y2="200" /> {/* End of Week 1 */}
+                <line x1="160" y1="0" x2="160" y2="200" /> {/* End of Week 2 */}
+                <line x1="240" y1="0" x2="240" y2="200" /> {/* End of Week 3 */}
               </g>
               
-              {/* Weight curve path */}
+              {/* Weight curve path (adjusted for 3 weeks - ends at x=240) */}
               <path
-                d="M 20 150 Q 100 120 180 80 Q 260 50 300 30"
+                d="M 20 150 Q 100 120 180 80 Q 210 65 240 50"
                 fill="none"
                 stroke="url(#weightGradient)"
                 strokeWidth="4"
@@ -114,22 +119,22 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 }}
               />
               
-              {/* Area under curve */}
+              {/* Area under curve (adjusted for 3 weeks - ends at x=240) */}
               <path
-                d="M 20 150 Q 100 120 180 80 Q 260 50 300 30 L 300 200 L 20 200 Z"
+                d="M 20 150 Q 100 120 180 80 Q 210 65 240 50 L 240 200 L 20 200 Z"
                 fill="url(#areaGradient)"
-                className={`transition-opacity duration-1000 delay-1000 ${
+                className={`transition-opacity duration-1500 delay-300 ${
                   animationComplete ? 'opacity-100' : 'opacity-0'
                 }`}
               />
               
-              {/* Week progression points */}
+              {/* Week progression points (adjusted for 3 weeks) */}
               <circle
                 cx="20"
                 cy="150"
                 r="6"
                 fill="#FFA500"
-                className={`transition-all duration-500 delay-500 ${
+                className={`transition-all duration-300 delay-50 ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
@@ -138,7 +143,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 cy="120"
                 r="4"
                 fill="#ea749b"
-                className={`transition-all duration-500 delay-1000 ${
+                className={`transition-all duration-300 delay-500 ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
@@ -147,25 +152,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 cy="80"
                 r="4"
                 fill="#ea749b"
-                className={`transition-all duration-500 delay-1500 ${
-                  animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                }`}
-              />
-              <circle
-                cx="260"
-                cy="50"
-                r="4"
-                fill="#ea749b"
-                className={`transition-all duration-500 delay-1800 ${
-                  animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                }`}
-              />
-              <circle
-                cx="300"
-                cy="30"
-                r="8"
-                fill="#32CD32"
-                className={`transition-all duration-500 delay-2000 ${
+                className={`transition-all duration-300 delay-1000 ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
@@ -173,7 +160,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
             
             {/* Goal badge */}
             <div 
-              className={`absolute top-2 right-4 bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-2500 ${
+              className={`absolute top-2 right-4 bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-1500 ${
                 animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
               }`}
             >
@@ -190,12 +177,6 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
             <div className="absolute -bottom-6 text-xs text-gray-500" style={{ left: '180px', transform: 'translateX(-50%)' }}>
               Week 3
             </div>
-            <div className="absolute -bottom-6 text-xs text-gray-500" style={{ left: '260px', transform: 'translateX(-50%)' }}>
-              Week 4
-            </div>
-            <div className="absolute -bottom-6 right-4 text-xs text-gray-500">
-              Goal
-            </div>
           </div>
         </div>
 
@@ -210,7 +191,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
         <div className="max-w-md mx-auto">
           <button
             onClick={onNext}
-            className={`w-full bg-[#8B7BCF] hover:bg-[#7A6BBF] text-white font-bold py-4 px-8 rounded-3xl text-base transition-all duration-500 ${
+            className={`w-full bg-[#ea749b] hover:bg-[#d85d87] text-white font-bold py-4 px-8 rounded-3xl text-base transition-all duration-500 ${
               showButton ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
             }`}
           >

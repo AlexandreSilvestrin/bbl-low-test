@@ -156,7 +156,7 @@ export default function Quiz() {
       key="info-1"
       onNext={nextStep}
       onPrevious={previousStep}
-      title="Over 587 thousand women have already tried the BBL challenge and progressed towards their goals!"
+      title="Over 587.000 women have already tried the BBL challenge and progressed towards their goals!"
       buttonText="CONTINUE"
       showImage={true}
       imageUrl={bblCommunityImage}

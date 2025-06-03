@@ -92,10 +92,19 @@ export default function InformationalPage({
           {getIconForMessageType()}
         </div>
 
-        {/* Título principal */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
-          {title.replace(/[✅🎉🔥💃👑🚨]/g, '').trim()}
-        </h1>
+        {/* Títulos */}
+        {title.includes('587.000 women') ? (
+          <div className="text-center">
+            <h2 className="text-pink-500 text-3xl font-extrabold mb-2">More than 500,000 women</h2>
+            <h1 className="text-xl text-gray-900 mb-6 leading-tight">
+              have already tried the BBL challenge and progressed towards their goals!
+            </h1>
+          </div>
+        ) : (
+          <h1 className="text-xl font-bold text-gray-900 mb-6 leading-tight">
+            {title.replace(/[✅🎉🔥💃👑🚨]/g, '').trim()}
+          </h1>
+        )}
 
         {/* Conteúdo */}
         <div className="space-y-4">
@@ -116,11 +125,12 @@ export default function InformationalPage({
         </div>
 
         {showImage && imageUrl && (
-          <div className="mt-8">
+          <div className="mt-8 flex justify-center">
             <img
               src={imageUrl}
               alt="BBL Challenge Community"
-              className="w-full rounded-2xl shadow-lg"
+              className="w-full max-w-xs"
+              style={{ borderRadius: 0, boxShadow: 'none', background: 'none' }}
             />
           </div>
         )}

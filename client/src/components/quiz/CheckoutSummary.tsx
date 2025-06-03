@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, Copy, Gift } from "lucide-react";
 import { cn } from "@/lib/utils";
-import beforeImage from "@assets/gsg8boognozdj7b0dlmj.webp";
-import afterImage from "@assets/gpb0nidq274vf3tjfhpi.webp";
+import antesDepois1 from "@assets/antes-depois1.jpeg";
+import antesDepois2 from "@assets/antes-depois2.jpeg";
+import antesDepois3 from "@assets/antes-depois3.jpeg";
 
 interface CheckoutSummaryProps {
   onNext: () => void;
@@ -81,20 +82,17 @@ const beforeAfterImages = [
   {
     name: "Sarah",
     result: "BBL Challenge",
-    beforeImage: beforeImage,
-    afterImage: afterImage
+    image: antesDepois1
   },
   {
     name: "Maria",
     result: "21 Days",
-    beforeImage: beforeImage,
-    afterImage: afterImage
+    image: antesDepois2
   },
   {
     name: "Juliana",
     result: "Amazing Results",
-    beforeImage: beforeImage,
-    afterImage: afterImage
+    image: antesDepois3
   }
 ];
 
@@ -232,18 +230,21 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
         <div className="max-w-md mx-auto flex items-center justify-between">
           {/* Timer Display */}
           <div className="text-left">
-            <div className="text-2xl font-bold text-[#ea749b] mb-1">
-              {formatTime(timeLeft).replace(':', ' : ')}
+            <div className="text-2xl font-bold text-[#ea749b] mb-1 flex items-center gap-4">
+              <span>{Math.floor(timeLeft / 60)}</span>
+              <span>:</span>
+              <span>{String(timeLeft % 60).padStart(2, '0')}</span>
             </div>
-            <div className="text-xs text-gray-600">
-              min   sec
+            <div className="text-xs text-gray-600 flex justify-between">
+              <span>min</span>
+              <span>sec</span>
             </div>
           </div>
           
           {/* Get Plan Button */}
           <Button 
             onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
-            className="bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-3 px-6 rounded-2xl text-sm w-full"
+            className="bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-2 px-6 rounded-2xl text-sm ml-6"
           >
             GET MY PERSONALIZED PLAN
           </Button>
@@ -257,7 +258,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             <div className="text-center">
               <div className="bg-gray-100 rounded-2xl p-4 mb-3">
                 <img 
-                  src={beforeImage}
+                  src={antesDepois1}
                   alt="Before - BBL Challenge"
                   className="w-full h-48 object-cover rounded-xl"
                 />
@@ -279,7 +280,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             <div className="text-center">
               <div className="bg-gray-100 rounded-2xl p-4 mb-3">
                 <img 
-                  src={afterImage}
+                  src={antesDepois3}
                   alt="After - BBL Challenge"
                   className="w-full h-48 object-cover rounded-xl"
                 />
@@ -322,25 +323,31 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
                 </h3>
               </div>
             </div>
-            
-            <div className="flex items-center justify-between bg-white rounded-xl p-5 border border-green-300 shadow-md">
-              <div className="flex items-center">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+
+            {/* Timer OUTSIDE the card */}
+            <div className="flex flex-col items-center mb-2">
+              <div className="text-2xl font-bold text-green-600 flex items-center gap-4">
+                <span>{Math.floor(timeLeft / 60)}</span>
+                <span>:</span>
+                <span>{String(timeLeft % 60).padStart(2, '0')}</span>
+              </div>
+              <div className="text-xs text-gray-600 flex justify-between w-16">
+                <span>min</span>
+                <span>sec</span>
+              </div>
+            </div>
+
+            {/* Coupon Card with centered name */}
+            <div className="flex justify-center">
+              <div className="bg-white rounded-xl p-5 border border-green-300 shadow-md w-full max-w-xs flex flex-col items-center">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mb-2">
                   <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                   </svg>
                 </div>
-                <span className="font-bold text-lg text-gray-900">
+                <span className="font-bold text-lg text-gray-900 text-center break-all">
                   {data?.name ? `${data.name.toLowerCase().replace(/\s+/g, '_')}_may25` : 'teste_may25'}
                 </span>
-              </div>
-              <div className="text-right">
-                <div className="text-2xl font-bold text-green-600">
-                  {formatTime(timeLeft).replace(':', ' : ')}
-                </div>
-                <div className="text-xs text-gray-600">
-                  min   sec
-                </div>
               </div>
             </div>
           </div>
@@ -519,11 +526,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
 
         {/* Auto-renewal notice */}
         <p className="text-xs text-gray-500 text-center mb-8">
-          By clicking GET MY PLAN, I agree that the plan I have selected will automatically 
-          renew until I cancel. BBL Challenge will automatically charge my payment method{" "}
-          <strong>$11.90</strong> every <strong>21 days</strong>. I can cancel online by visiting subscription page in{" "}
-          <a href="#" className="text-blue-600 underline">my account</a>{" "}
-          on website or in the app to avoid being charged for the next billing cycle.
+          By clicking GET MY PLAN, you will make a <strong>one-time payment</strong> for access to your personalized plan. <br />No recurring charges. Enjoy your plan for life!
         </p>
 
         {/* Highlights Section */}
@@ -592,47 +595,32 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             Results that make us proud
           </h2>
           
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentBeforeAfter * 100}%)` }}
-              >
-                {beforeAfterImages.map((result, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-2 gap-2">
-                      <img 
-                        src={result.beforeImage}
-                        alt="Before"
-                        className="w-full h-64 object-cover rounded-xl"
-                      />
-                      <img 
-                        src={result.afterImage}
-                        alt="After"
-                        className="w-full h-64 object-cover rounded-xl"
-                      />
-                    </div>
-                    <div className="text-center mt-4">
-                      <p className="font-semibold text-gray-900">{result.name}, {result.result}</p>
-                    </div>
-                  </div>
-                ))}
+          <div className="relative flex flex-col items-center">
+            <div className="overflow-hidden rounded-2xl w-full flex justify-center">
+              <div className="transition-transform duration-500 ease-in-out w-full flex justify-center">
+                <img
+                  src={beforeAfterImages[currentBeforeAfter].image}
+                  alt={beforeAfterImages[currentBeforeAfter].name}
+                  className="w-auto h-64 object-cover rounded-xl"
+                  style={{ maxWidth: '100%' }}
+                />
               </div>
             </div>
-            
-            <button 
+            <button
               onClick={prevSlide}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
             >
               <ChevronLeft className="h-4 w-4 text-gray-600" />
             </button>
-            
-            <button 
+            <button
               onClick={nextSlide}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
             >
               <ChevronRight className="h-4 w-4 text-gray-600" />
             </button>
+            <div className="text-center mt-4">
+              <p className="font-semibold text-gray-900">{beforeAfterImages[currentBeforeAfter].name}, {beforeAfterImages[currentBeforeAfter].result}</p>
+            </div>
           </div>
 
           <p className="text-sm text-gray-600 mt-4 text-center">
@@ -829,7 +817,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           <div className="relative mb-4">
             <div className="absolute inset-0 bg-[#ea749b] rounded-3xl blur-md animate-pulse opacity-50"></div>
             <Button 
-              onClick={onNext}
+              onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
               disabled={!agreedToTerms}
               className="relative w-full bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-4 px-8 rounded-3xl text-base disabled:opacity-50 shadow-lg"
             >
@@ -838,11 +826,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           </div>
 
           <p className="text-xs text-gray-500 text-center mb-8">
-            By clicking GET MY PLAN, I agree that the plan I have selected will automatically 
-            renew until I cancel. BBL Challenge will automatically charge my payment method{" "}
-            <strong>R$11.90</strong> every <strong>21 days</strong>. I can cancel online by visiting subscription page in{" "}
-            <a href="#" className="text-blue-600 underline">my account</a>{" "}
-            on website or in the app to avoid being charged for the next billing cycle.
+            By clicking GET MY PLAN, you will make a <strong>one-time payment</strong> for access to your personalized plan. <br />No recurring charges. Enjoy your plan for life!
           </p>
         </div>
 

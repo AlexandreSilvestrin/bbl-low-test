@@ -106,7 +106,7 @@ export default function FinalOffer({ onNext, onUpdate, data }: FinalOfferProps) 
       </div>
 
       <button 
-        onClick={handlePurchase}
+        onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
         className="w-full bg-[#ea749b] text-white py-4 px-8 rounded-full font-semibold text-lg hover:bg-[#d85d87] transition-all duration-200 mb-6"
       >
         OBTER MEU PLANO

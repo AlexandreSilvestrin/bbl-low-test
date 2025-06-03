@@ -43,7 +43,7 @@ export default function PersonalizedCoupon({ data, onNext, onPrevious }: Persona
             <Gift className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            🎉 Congratulations, {data.name}!
+            🎉 Congratulations, <span className="truncate max-w-[200px] inline-block align-bottom">{data.name}</span>!
           </h1>
           <p className="text-lg text-gray-600">
             You earned an exclusive personalized discount
