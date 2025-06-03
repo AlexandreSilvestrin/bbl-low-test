@@ -102,8 +102,8 @@ export default function InformationalPage({
           </div>
         ) : (
           <h1 className="text-xl font-bold text-gray-900 mb-6 leading-tight">
-            {title.replace(/[✅🎉🔥💃👑🚨]/g, '').trim()}
-          </h1>
+          {title.replace(/[✅🎉🔥💃👑🚨]/g, '').trim()}
+        </h1>
         )}
 
         {/* Conteúdo */}

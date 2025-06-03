@@ -168,7 +168,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
             </svg>
             
             {/* Goal badge */}
-            <div
+            <div 
               className={`absolute bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-\[10000ms\] ${
                 animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
               }`}

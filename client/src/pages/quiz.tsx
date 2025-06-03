@@ -51,7 +51,6 @@ import PersonalizedCoupon from "@/components/quiz/PersonalizedCoupon";
 import WeightProjection from "@/components/quiz/WeightProjection";
 import LastPlanEver from "@/components/quiz/LastPlanEver";
 import ProfileSummary from "@/components/quiz/ProfileSummary";
-import ExclusiveOffers from "@/components/quiz/ExclusiveOffers";
 
 export interface QuizData {
   // Step 1
@@ -122,7 +121,7 @@ export interface QuizData {
   waterIntake: string;
 }
 
-const TOTAL_STEPS = 41;
+const TOTAL_STEPS = 40;
 
 export default function Quiz() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -302,22 +301,19 @@ export default function Quiz() {
     // Step 35 - Target areas question
     <TargetZones key="target-zones" onNext={nextStep} onPrevious={previousStep} onUpdate={updateQuizData} data={quizData} />,
     
-    // Step 36 - Exclusive Offers page
-    <ExclusiveOffers key="exclusive-offers" onNext={nextStep} onPrevious={previousStep} />,
-    
-    // Step 37 - Loading with testimonials
+    // Step 36 - Loading with testimonials
     <PlanCreationLoading key="plan-creation" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 38 - The last plan you'll ever need (animated chart)
+    // Step 37 - The last plan you'll ever need (animated chart)
     <LastPlanEver key="last-plan" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 39 - Name input
+    // Step 38 - Name input
     <NameInput key="name" onNext={nextStep} onPrevious={previousStep} onUpdate={updateQuizData} data={quizData} />,
     
-    // Step 40 - Personalized progress projection
+    // Step 39 - Personalized progress projection
     <WeightProjection key="weight-projection-final" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 41 - Final result page with integrated coupon
+    // Step 40 - Final result page with integrated coupon
     <CheckoutSummary key="checkout" onNext={nextStep} onPrevious={previousStep} data={quizData} />
   ];
 

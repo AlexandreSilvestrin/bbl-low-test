@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import antesDepois1 from "@assets/antes-depois1.jpeg";
 import antesDepois2 from "@assets/antes-depois2.jpeg";
 import antesDepois3 from "@assets/antes-depois3.jpeg";
+import antes from "@assets/antes.png";
+import depois from "@assets/depois.png";
 
 interface CheckoutSummaryProps {
   onNext: () => void;
@@ -258,19 +260,19 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             <div className="text-center">
               <div className="bg-gray-100 rounded-2xl p-4 mb-3">
                 <img 
-                  src={antesDepois1}
+                  src={antes}
                   alt="Before - BBL Challenge"
-                  className="w-full h-48 object-cover rounded-xl"
+                  className="w-full h-96 object-cover rounded-xl"
                 />
               </div>
               <div className="text-left">
                 <p className="text-gray-600 text-sm mb-1">Body fat</p>
                 <p className="font-semibold text-gray-900">Normal</p>
                 <p className="text-gray-600 text-sm mb-1 mt-2">BBL Challenge level</p>
-                <p className="font-semibold text-gray-900">Intermediate</p>
+                <p className="font-semibold text-gray-900">Beginner</p>
                 <div className="flex space-x-1 mt-2">
                   <div className="h-2 w-8 bg-primary rounded"></div>
-                  <div className="h-2 w-8 bg-primary rounded"></div>
+                  <div className="h-2 w-8 bg-gray-200 rounded"></div>
                   <div className="h-2 w-8 bg-gray-200 rounded"></div>
                 </div>
               </div>
@@ -280,9 +282,9 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             <div className="text-center">
               <div className="bg-gray-100 rounded-2xl p-4 mb-3">
                 <img 
-                  src={antesDepois3}
+                  src={depois}
                   alt="After - BBL Challenge"
-                  className="w-full h-48 object-cover rounded-xl"
+                  className="w-full h-96 object-cover rounded-xl"
                 />
               </div>
               <div className="text-left">
@@ -297,6 +299,64 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
                 </div>
               </div>
               <p className="text-primary font-medium text-center mt-2">Your Goal</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Exclusive Gifts Section */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-6">
+            You've unlocked 3 exclusive gifts!
+            <span role="img" aria-label="gift"> 🎁</span>
+          </h1>
+
+          <div className="space-y-6">
+            <div className="bg-gray-100 rounded-2xl p-6 flex items-center">
+              <div className="flex-shrink-0 mr-4">
+                <span role="img" aria-label="sparkles" className="text-5xl">✨</span>
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-lg font-bold text-[#ea749b] mb-2 text-left">Sexy Minds</h3>
+                <div>
+                  <p className="text-gray-600 text-sm text-left">The secret training with video lessons and affirmations to help you not only transform your body, but become a sexy, powerful, confident woman that everyone admires.</p>
+                </div>
+                <div className="flex justify-end items-center mt-2">
+                  <span className="text-sm text-gray-500 line-through mr-2">$29.00</span>
+                  <span className="bg-[#ea749b] text-white text-xs font-bold px-2 py-1 rounded-full">FREE</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-100 rounded-2xl p-6 flex items-center">
+              <div className="flex-shrink-0 mr-4">
+                <span role="img" aria-label="flexed biceps" className="text-5xl">💪</span>
+              </div>
+               <div className="flex-grow">
+                <h3 className="text-lg font-bold text-[#ea749b] mb-2 text-left">Better Shape</h3>
+                <div>
+                  <p className="text-gray-600 text-sm text-left">The revolutionary self-massage technique with simple videos to add to your daily routine — sculpt your curves and eliminate water retention.</p>
+                </div>
+                 <div className="flex justify-end items-center mt-2">
+                  <span className="text-sm text-gray-500 line-through mr-2">$29.00</span>
+                  <span className="bg-[#ea749b] text-white text-xs font-bold px-2 py-1 rounded-full">FREE</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-100 rounded-2xl p-6 flex items-center">
+              <div className="flex-shrink-0 mr-4">
+                 <span role="img" aria-label="dress" className="text-5xl">👗</span>
+              </div>
+               <div className="flex-grow">
+                <h3 className="text-lg font-bold text-[#ea749b] mb-2 text-left">"Perfect Fit" Workshop</h3>
+                <div>
+                  <p className="text-gray-600 text-sm text-left">A complete class revealing the secret trick celebrities use to know exactly which outfits flatter their curves — and how to do the same with the clothes you already own.</p>
+                </div>
+                <div className="flex justify-end items-center mt-2">
+                  <span className="text-sm text-gray-500 line-through mr-2">$29.00</span>
+                  <span className="bg-[#ea749b] text-white text-xs font-bold px-2 py-1 rounded-full">FREE</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
