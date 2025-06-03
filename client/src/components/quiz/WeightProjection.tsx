@@ -1,5 +1,6 @@
 import React from 'react';
 import { QuizData } from '@/pages/quiz';
+import { useEffect, useState } from "react";
 
 interface WeightProjectionProps {
   onNext: () => void;
@@ -8,6 +9,17 @@ interface WeightProjectionProps {
 }
 
 export default function WeightProjection({ onNext, data }: WeightProjectionProps) {
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  useEffect(() => {
+    // Start animation after component mounts
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Get user's name for personalization
   const userName = data.name || "User";
   
@@ -36,57 +48,110 @@ export default function WeightProjection({ onNext, data }: WeightProjectionProps
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-2xl p-6 mb-8 relative">
-          {/* Custom SVG Chart */}
-          <div className="relative h-48">
-            <svg className="w-full h-full" viewBox="0 0 400 200">
-              {/* Background gradient area */}
+        {/* Animated Chart */}
+        <div className="bg-gray-50 rounded-3xl p-6 mb-8 relative overflow-hidden">
+          <div className="relative h-64">
+            {/* Chart SVG */}
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 320 200"
+              className="absolute inset-0"
+            >
               <defs>
-                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ea749b" stopOpacity="0.2"/>
-                  <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.2"/>
-                  <stop offset="100%" stopColor="#ea749b" stopOpacity="0.3"/>
+                <linearGradient id="weightGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FFA500" />
+                  <stop offset="30%" stopColor="#FFD700" />
+                  <stop offset="70%" stopColor="#ea749b" />
+                  <stop offset="100%" stopColor="#32CD32" />
                 </linearGradient>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ea749b"/>
-                  <stop offset="50%" stopColor="#f59e0b"/>
-                  <stop offset="100%" stopColor="#ea749b"/>
+                
+                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(234, 116, 155, 0.3)" />
+                  <stop offset="100%" stopColor="rgba(234, 116, 155, 0.0)" />
                 </linearGradient>
               </defs>
               
-              {/* Area fill */}
-              <path
-                d="M 80 150 Q 160 125 240 105 Q 320 85 360 70 L 360 180 L 80 180 Z"
-                fill="url(#areaGradient)"
-              />
+              {/* Grid lines */}
+              <g stroke="#E5E7EB" strokeWidth="1" opacity="0.5">
+                <line x1="0" y1="50" x2="320" y2="50" />
+                <line x1="0" y1="100" x2="320" y2="100" />
+                <line x1="0" y1="150" x2="320" y2="150" />
+              </g>
               
-              {/* Progress line */}
+              {/* Week markers (adjusted for 3 weeks) */}
+              <g stroke="#D1D5DB" strokeWidth="1" opacity="0.3">
+                <line x1="80" y1="0" x2="80" y2="200" /> {/* End of Week 1 */}
+                <line x1="160" y1="0" x2="160" y2="200" /> {/* End of Week 2 */}
+                <line x1="240" y1="0" x2="240" y2="200" /> {/* End of Week 3 */}
+              </g>
+              
+              {/* Weight curve path (adjusted to fill width) */}
               <path
-                d="M 80 150 Q 160 125 240 105 Q 320 85 360 70"
-                stroke="url(#lineGradient)"
-                strokeWidth="4"
+                d="M 20 150 Q 100 120 180 80 Q 240 50 300 25"
                 fill="none"
+                stroke="url(#weightGradient)"
+                strokeWidth="4"
                 strokeLinecap="round"
+                className={`transition-all duration-[5000ms] ease-out`}
+                style={{
+                  strokeDasharray: animationComplete ? 'none' : '1000',
+                  strokeDashoffset: animationComplete ? '0' : '1000',
+                  transition: 'stroke-dashoffset 5s ease-out'
+                }}
               />
               
-              {/* Progress points */}
-              <circle cx="80" cy="150" r="5" fill="#ea749b" />
-              <circle cx="160" cy="125" r="5" fill="#f59e0b" />
-              <circle cx="240" cy="105" r="5" fill="#ea749b" />
-              <circle cx="360" cy="70" r="5" fill="#ea749b" />
+              {/* Area under curve (adjusted to fill width) */}
+              <path
+                d="M 20 150 Q 100 120 180 80 Q 240 50 300 25 L 300 200 L 20 200 Z"
+                fill="url(#areaGradient)"
+                className={`transition-opacity duration-1500 delay-2000 ${animationComplete ? 'opacity-100' : 'opacity-0'}`}
+              />
               
-              {/* Week labels */}
-              <text x="80" y="195" textAnchor="middle" className="text-xs fill-gray-500">Week 1</text>
-              <text x="160" y="195" textAnchor="middle" className="text-xs fill-gray-500">Week 2</text>
-              <text x="240" y="195" textAnchor="middle" className="text-xs fill-gray-500">Week 3</text>
-              <text x="360" y="195" textAnchor="middle" className="text-xs fill-gray-500">Week 4</text>
+              {/* Week progression points (adjusted for 3 weeks and full width) */}
+              <circle
+                cx="20"
+                cy="150"
+                r="6"
+                fill="#FFA500"
+                className={`transition-all duration-300 delay-500 ${animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+              />
+              <circle
+                cx="100"
+                cy="120"
+                r="4"
+                fill="#ea749b"
+                className={`transition-all duration-300 delay-2500 ${animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+              />
+              <circle
+                cx="180"
+                cy="80"
+                r="4"
+                fill="#ea749b"
+                className={`transition-all duration-300 delay-3800 ${animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+              />
+              <circle
+                cx="300"
+                cy="25"
+                r="8"
+                fill="#32CD32"
+                className={`transition-all duration-500 delay-[4800ms] ${animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+              />
             </svg>
             
             {/* Goal badge */}
-            <div className="absolute top-4 right-4">
-              <div className="bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-md">
-                Goal<br/>85%
-              </div>
+            <div
+              className={`absolute bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-[5200ms] ${animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+              style={{ top: '15px', left: '270px' }}
+            >
+              Goal<br />85%
+            </div>
+            
+            {/* Week labels - Correctly spaced and aligned for 3 weeks */}
+            <div className="absolute -bottom-6 w-full text-xs text-gray-500 flex justify-between px-2">
+              <div className="text-center">Week 1</div>
+              <div className="text-center">Week 2</div>
+              <div className="text-center">Week 3</div>
             </div>
           </div>
         </div>

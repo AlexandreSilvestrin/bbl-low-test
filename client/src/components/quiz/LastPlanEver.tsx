@@ -104,37 +104,37 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 <line x1="240" y1="0" x2="240" y2="200" /> {/* End of Week 3 */}
               </g>
               
-              {/* Weight curve path (adjusted for 3 weeks - ends at x=240) */}
+              {/* Weight curve path (adjusted to fill width) */}
               <path
-                d="M 20 150 Q 100 120 180 80 Q 210 65 240 50"
+                d="M 20 150 Q 100 120 180 80 Q 240 50 300 25"
                 fill="none"
                 stroke="url(#weightGradient)"
                 strokeWidth="4"
                 strokeLinecap="round"
-                className={`transition-all duration-2000 ease-out`}
+                className={`transition-all duration-\[10000ms\] ease-out`}
                 style={{
                   strokeDasharray: animationComplete ? 'none' : '1000',
                   strokeDashoffset: animationComplete ? '0' : '1000',
-                  transition: 'stroke-dashoffset 2s ease-out'
+                  transition: 'stroke-dashoffset 10s ease-out'
                 }}
               />
               
-              {/* Area under curve (adjusted for 3 weeks - ends at x=240) */}
+              {/* Area under curve (adjusted to fill width) */}
               <path
-                d="M 20 150 Q 100 120 180 80 Q 210 65 240 50 L 240 200 L 20 200 Z"
+                d="M 20 150 Q 100 120 180 80 Q 240 50 300 25 L 300 200 L 20 200 Z"
                 fill="url(#areaGradient)"
-                className={`transition-opacity duration-1500 delay-300 ${
+                className={`transition-opacity duration-1500 delay-\[4000ms\] ${
                   animationComplete ? 'opacity-100' : 'opacity-0'
                 }`}
               />
               
-              {/* Week progression points (adjusted for 3 weeks) */}
+              {/* Week progression points (adjusted for 3 weeks and full width) */}
               <circle
                 cx="20"
                 cy="150"
                 r="6"
                 fill="#FFA500"
-                className={`transition-all duration-300 delay-50 ${
+                className={`transition-all duration-300 delay-\[1000ms\] ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
@@ -143,7 +143,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 cy="120"
                 r="4"
                 fill="#ea749b"
-                className={`transition-all duration-300 delay-500 ${
+                className={`transition-all duration-300 delay-\[5000ms\] ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
@@ -152,30 +152,36 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
                 cy="80"
                 r="4"
                 fill="#ea749b"
-                className={`transition-all duration-300 delay-1000 ${
+                className={`transition-all duration-300 delay-\[7500ms\] ${
+                  animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                }`}
+              />
+              <circle
+                cx="300"
+                cy="25"
+                r="8"
+                fill="#32CD32"
+                className={`transition-all duration-500 delay-\[9500ms\] ${
                   animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
               />
             </svg>
             
             {/* Goal badge */}
-            <div 
-              className={`absolute top-2 right-4 bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-1500 ${
+            <div
+              className={`absolute bg-[#ea749b] text-white px-3 py-2 rounded-lg text-sm font-bold transition-all duration-500 delay-\[10000ms\] ${
                 animationComplete ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
               }`}
+              style={{ top: '15px', left: '270px' }}
             >
               Goal<br />{targetWeight} kg
             </div>
             
-            {/* Week labels */}
-            <div className="absolute -bottom-6 left-4 text-xs text-gray-500">
-              Week 1
-            </div>
-            <div className="absolute -bottom-6 text-xs text-gray-500" style={{ left: '100px', transform: 'translateX(-50%)' }}>
-              Week 2
-            </div>
-            <div className="absolute -bottom-6 text-xs text-gray-500" style={{ left: '180px', transform: 'translateX(-50%)' }}>
-              Week 3
+            {/* Week labels - Correctly spaced and aligned for 3 weeks */}
+            <div className="absolute -bottom-6 w-full text-xs text-gray-500 flex justify-between px-2">
+              <div className="text-center">Week 1</div>
+              <div className="text-center">Week 2</div>
+              <div className="text-center">Week 3</div>
             </div>
           </div>
         </div>
@@ -191,7 +197,7 @@ export default function LastPlanEver({ onNext, onPrevious, data }: LastPlanEverP
         <div className="max-w-md mx-auto">
           <button
             onClick={onNext}
-            className={`w-full bg-[#ea749b] hover:bg-[#d85d87] text-white font-bold py-4 px-8 rounded-3xl text-base transition-all duration-500 ${
+            className={`w-full bg-[#ea749b] hover:bg-[#d85d87] text-white font-bold py-4 px-8 rounded-3xl text-base pulse-button ${
               showButton ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
             }`}
           >

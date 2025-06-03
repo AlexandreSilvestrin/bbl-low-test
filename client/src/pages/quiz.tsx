@@ -51,6 +51,7 @@ import PersonalizedCoupon from "@/components/quiz/PersonalizedCoupon";
 import WeightProjection from "@/components/quiz/WeightProjection";
 import LastPlanEver from "@/components/quiz/LastPlanEver";
 import ProfileSummary from "@/components/quiz/ProfileSummary";
+import ExclusiveOffers from "@/components/quiz/ExclusiveOffers";
 
 export interface QuizData {
   // Step 1
@@ -121,7 +122,7 @@ export interface QuizData {
   waterIntake: string;
 }
 
-const TOTAL_STEPS = 40;
+const TOTAL_STEPS = 41;
 
 export default function Quiz() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -170,8 +171,8 @@ export default function Quiz() {
       key="info-2"
       onNext={nextStep}
       onPrevious={previousStep}
-      title="✅ You're going to rock it!"
-      subtitle="Our challenge works for any age!"
+      title="You are going to kill it!"
+      subtitle={<span>Our challenge works for <strong>any age</strong>!</span>}
       description="We help you shape your body without leaving home! No need to face crowded gyms, harmful drugs or surgeries that put your life at risk."
       highlightType="green"
     />,
@@ -207,7 +208,7 @@ export default function Quiz() {
       onPrevious={previousStep}
       title="🚨 Did you know that the clothes you wear daily shape your body over time?"
       description="They can enhance or accentuate unwanted volumes without you realizing it."
-      subtitle="✅ The good news - With the right exercises for your body, you can correct this and sculpt the curves you desire!"
+      subtitle={<span>✅ <strong>The good news</strong> - With the right exercises for your body, you can correct this and sculpt the curves you desire!</span>}
       highlightType="red"
     />,
     
@@ -245,7 +246,7 @@ export default function Quiz() {
       onNext={nextStep}
       onPrevious={previousStep}
       title="💃 The BBL Challenge will renew your energy for daily life!"
-      description="Our challenge activates large muscle groups and releases endorphins. We'll guide you to get the best results by regulating your hormones, boosting your energy, igniting your libido and elevating your self-esteem!"
+      description={<span>Our challenge activates large muscle groups and releases endorphins. We'll guide you to get the best results by <strong>regulating your hormones, boosting your energy, igniting your libido and elevating your self-esteem!</strong></span>}
       highlightType="green"
     />,
     
@@ -263,7 +264,7 @@ export default function Quiz() {
       key="info-6"
       onNext={nextStep}
       onPrevious={previousStep}
-      title="👑 Don't worry, we take care of you with great attention!"
+      title="👑 Don't worry, we take care of you with great care"
       description="Our challenge includes a practical and exclusive menu for your eating profile. We bring a variety of options that will accelerate your challenge results and are ideal for you who want to grow your glutes!"
       highlightType="green"
     />,
@@ -301,19 +302,22 @@ export default function Quiz() {
     // Step 35 - Target areas question
     <TargetZones key="target-zones" onNext={nextStep} onPrevious={previousStep} onUpdate={updateQuizData} data={quizData} />,
     
-    // Step 36 - Loading with testimonials
+    // Step 36 - Exclusive Offers page
+    <ExclusiveOffers key="exclusive-offers" onNext={nextStep} onPrevious={previousStep} />,
+    
+    // Step 37 - Loading with testimonials
     <PlanCreationLoading key="plan-creation" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 37 - The last plan you'll ever need (animated chart)
+    // Step 38 - The last plan you'll ever need (animated chart)
     <LastPlanEver key="last-plan" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 38 - Name input
+    // Step 39 - Name input
     <NameInput key="name" onNext={nextStep} onPrevious={previousStep} onUpdate={updateQuizData} data={quizData} />,
     
-    // Step 39 - Personalized progress projection
+    // Step 40 - Personalized progress projection
     <WeightProjection key="weight-projection-final" onNext={nextStep} onPrevious={previousStep} data={quizData} />,
     
-    // Step 40 - Final result page with integrated coupon
+    // Step 41 - Final result page with integrated coupon
     <CheckoutSummary key="checkout" onNext={nextStep} onPrevious={previousStep} data={quizData} />
   ];
 

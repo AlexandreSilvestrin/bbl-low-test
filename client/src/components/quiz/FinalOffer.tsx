@@ -29,7 +29,7 @@ export default function FinalOffer({ onNext, onUpdate, data }: FinalOfferProps) 
     <div className="gradient-bg rounded-2xl p-6 mb-6">
       <div className="text-center mb-8">
         <p className="text-xs text-gray-500 mb-4">
-          *Warning: Following exercises and diet plans is key in your fitness journey and greatly impacts results. In 4 weeks users can expect to lose no more than 0.45-0.90 kg per week. Individual results may vary.
+          *Warning: Following exercises and diet plans is key in your fitness journey and greatly impacts results. In 3 weeks users can expect to lose no more than 0.45-0.90 kg per week. Individual results may vary.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">

@@ -5,8 +5,8 @@ interface InformationalPageProps {
   onNext: () => void;
   onPrevious: () => void;
   title: string;
-  subtitle?: string;
-  description?: string;
+  subtitle?: string | React.ReactNode;
+  description?: string | React.ReactNode;
   buttonText?: string;
   highlightType?: "green" | "red" | "blue";
   showImage?: boolean;
@@ -110,10 +110,7 @@ export default function InformationalPage({
         <div className="space-y-4">
           {subtitle && (
             <p className="text-lg text-gray-700 leading-relaxed">
-              <span className="font-semibold">{subtitle.split(' ').slice(0, 3).join(' ')}</span>
-              {subtitle.split(' ').slice(3).length > 0 && (
-                <span> {subtitle.split(' ').slice(3).join(' ')}</span>
-              )}
+              {subtitle}
             </p>
           )}
 

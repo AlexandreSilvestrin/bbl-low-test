@@ -22,11 +22,6 @@ const insecurityAreas = [
     emoji: "👙"
   },
   { 
-    value: "roupas-barriga", 
-    label: "Wearing clothes that show the belly",
-    emoji: "👕"
-  },
-  { 
     value: "tirando-fotos", 
     label: "Taking photos",
     emoji: "📸"
@@ -45,11 +40,6 @@ const insecurityAreas = [
     value: "provando-roupas", 
     label: "Trying on clothes in stores",
     emoji: "👚"
-  },
-  { 
-    value: "escolhendo-look", 
-    label: "Choosing an outfit to leave the house",
-    emoji: "👠"
   },
 ];
 

@@ -244,7 +244,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           {/* Get Plan Button */}
           <Button 
             onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
-            className="bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-2 px-6 rounded-2xl text-sm ml-6"
+            className="bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-2 px-6 rounded-2xl text-sm ml-6 pulse-button"
           >
             GET MY PERSONALIZED PLAN
           </Button>
@@ -306,7 +306,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           <h1 className="text-3xl font-bold text-gray-900 mb-8 leading-tight">
             Get<br/>
             visible results<br/>
-            in 4 weeks!
+            in 3 weeks!
           </h1>
           
           {/* Coupon Applied Section */}
@@ -447,8 +447,8 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    {plan.discount}
+                  <div className="bg-[#ea749b] text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    MOST POPULAR
                   </div>
                 </div>
               )}
@@ -469,7 +469,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
                   <div>
                     <p className="font-semibold text-gray-900 text-lg">{plan.title}</p>
                     {plan.subtitle && (
-                      <p className="text-red-600 text-sm font-medium">{plan.subtitle}</p>
+                      <p className="text-red-600 text-sm font-medium text-left">{plan.subtitle}</p>
                     )}
                     <div className="flex items-center space-x-2 mt-1">
                       <p className="text-gray-500 text-lg line-through">{plan.originalPrice}</p>
@@ -518,7 +518,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           <Button 
             onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
             disabled={!agreedToTerms}
-            className="w-full bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-4 px-8 rounded-2xl text-base disabled:opacity-50"
+            className="w-full bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-4 px-8 rounded-2xl text-base disabled:opacity-50 pulse-button"
           >
             GET MY PERSONALIZED PLAN
           </Button>
@@ -708,7 +708,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
 
           <p className="text-xs text-gray-500 mt-4">
             <strong>Disclaimer:</strong> Following exercise and diet plans is the key in your fitness journey and greatly 
-            impacts results. In 4 weeks users can typically expect to lose not more than 0.45-0.90 kg 
+            impacts results. In 3 weeks users can typically expect to lose not more than 0.45-0.90 kg 
             per week. Individual results may vary.
           </p>
         </div>
@@ -716,7 +716,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
         {/* Final CTA Section */}
         <div className="text-center mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            Get visible results in 4 weeks!
+            Get visible results in 3 weeks!
           </h2>
           
           <div className="flex items-center justify-between mb-6">
@@ -779,9 +779,12 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
                     <div>
                       <p className="font-semibold text-gray-900">{plan.title}</p>
                       {plan.subtitle && (
-                        <p className="text-gray-500 text-sm">{plan.subtitle}</p>
+                        <p className="text-red-600 text-sm font-medium text-left">{plan.subtitle}</p>
                       )}
-                      <p className="text-gray-900 font-medium">{plan.price}</p>
+                      <div className="flex items-center space-x-2 mt-1">
+                        <p className="text-gray-500 text-lg line-through">{plan.originalPrice}</p>
+                        <p className="text-green-600 font-bold text-xl">{plan.price}</p>
+                      </div>
                     </div>
                   </div>
                   
@@ -815,11 +818,10 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           </div>
 
           <div className="relative mb-4">
-            <div className="absolute inset-0 bg-[#ea749b] rounded-3xl blur-md animate-pulse opacity-50"></div>
             <Button 
               onClick={() => window.open('https://lp.bblchalllenge.com/click', '_blank')}
               disabled={!agreedToTerms}
-              className="relative w-full bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-4 px-8 rounded-3xl text-base disabled:opacity-50 shadow-lg"
+              className="relative w-full bg-[#ea749b] hover:bg-[#e85a8a] text-white font-bold py-4 px-8 rounded-3xl text-base disabled:opacity-50 pulse-button"
             >
               GET MY PLAN
             </Button>
@@ -842,7 +844,7 @@ export default function CheckoutSummary({ onNext, data }: CheckoutSummaryProps) 
           
           <p className="text-gray-600 text-sm mb-4">
             We believe that our plan may work for you and you'll get visible 
-            results in 4 weeks! We are ready to return your money back 
+            results in 3 weeks! We are ready to return your money back 
             if you don't see visible results and can demonstrate that you 
             followed our plan.
           </p>

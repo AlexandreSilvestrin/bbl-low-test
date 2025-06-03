@@ -27,7 +27,7 @@ const buttTypes = [
   },
   { 
     value: "flat", 
-    label: "Flat/negative volume",
+    label: "Flat/zero volume",
     icon: TrendingDown
   },
 ];

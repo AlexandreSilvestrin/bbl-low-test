@@ -12,31 +12,33 @@ interface IntimacyInsecuritiesQuestionProps {
 const intimacyOptions = [
   { 
     value: "sem-roupa", 
-    label: "When I'm completely undressed"
+    label: "When I'm completely undressed",
+    emoji: "🙈"
   },
   { 
     value: "luz-acesa", 
-    label: "When the light is on"
+    label: "When the light is on",
+    emoji: "💡"
   },
   { 
     value: "por-cima", 
-    label: "From above (I don't like my belly showing)"
+    label: "When I am on top (I don't like my belly showing)",
+    emoji: "🔝"
   },
   { 
     value: "de-quatro", 
-    label: "On all fours (I don't have volume or curves)"
-  },
-  { 
-    value: "de-lado", 
-    label: "From the side (I feel it doesn't fit)"
+    label: "On all fours (I don't have volume or curves)",
+    emoji: "🐾"
   },
   { 
     value: "evito-intimidade", 
-    label: "I avoid intimacy to not feel ashamed"
+    label: "I avoid intimacy to not feel ashamed",
+    emoji: "🚪"
   },
   { 
     value: "nao-responder", 
-    label: "I prefer not to answer"
+    label: "I prefer not to answer",
+    emoji: "🤐"
   },
 ];
 
@@ -69,7 +71,7 @@ export default function IntimacyInsecuritiesQuestion({ onNext, onUpdate, data }:
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-16">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            Behind closed doors, what makes you feel uncomfortable or insecure about your body?
+            Under the sheets, what makes you feel uncomfortable or insecure about your body?
           </h1>
         </div>
 
@@ -86,7 +88,7 @@ export default function IntimacyInsecuritiesQuestion({ onNext, onUpdate, data }:
                     : "bg-white text-gray-700 border-gray-200 hover:border-[#ea749b] hover:shadow-md"
                 }`}
               >
-                <span>{option.label}</span>
+                <span>{option.emoji} {option.label}</span>
               </button>
             );
           })}

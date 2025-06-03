@@ -13,7 +13,7 @@ const underwearTypes = [
   { 
     value: "brief", 
     label: "Brief (classic with wide sides and full coverage)",
-    icon: "👙"
+    icon: "🩳"
   },
   { 
     value: "bikini", 
@@ -23,12 +23,12 @@ const underwearTypes = [
   { 
     value: "thong", 
     label: "Thong",
-    icon: "👙"
+    icon: "🍑"
   },
   { 
     value: "hipster", 
     label: "Hipster (low waist, wide sides)",
-    icon: "👙"
+    icon: "🩲"
   },
 ];
 

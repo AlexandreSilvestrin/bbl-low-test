@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 import Header from "@/components/quiz/Header";
 import type { QuizData } from "@/pages/quiz";
+import gatinhaImage from "@assets/gatinha.jpg";
 
 interface PlanCreationLoadingProps {
   onNext: () => void;
@@ -120,12 +121,12 @@ export default function PlanCreationLoading({ onNext, onPrevious, data }: PlanCr
         <div className="bg-gray-50 rounded-2xl p-6 max-w-md mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <img 
-              src="/attached_assets/375b10bc-d74e-4ebd-87ef-ca7fe2da1b85.jpeg"
+              src={gatinhaImage}
               alt="Transformação BBL Challenge"
               className="w-16 h-16 rounded-full object-cover"
             />
             <div>
-              <h3 className="font-bold text-gray-900">Perdi 15kg e ganhei bumbum!</h3>
+              <h3 className="font-bold text-gray-900">I lost 15kg and gained a butt!</h3>
               <span className="text-gray-600 text-sm">Amanda</span>
             </div>
           </div>

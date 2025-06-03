@@ -11,11 +11,6 @@ interface EatingRoutineQuestionProps {
 
 const routineOptions = [
   { 
-    value: "sem-horario", 
-    label: "I have no schedule, I eat when I feel hungry",
-    emoji: "⏰"
-  },
-  { 
     value: "beliscando", 
     label: "I'm constantly snacking on something",
     emoji: "🍪"
@@ -24,11 +19,6 @@ const routineOptions = [
     value: "so-rua", 
     label: "I only eat out",
     emoji: "🍔"
-  },
-  { 
-    value: "sem-tempo", 
-    label: "I don't have time, I eat what's easiest",
-    emoji: "🥪"
   },
   { 
     value: "basico", 
